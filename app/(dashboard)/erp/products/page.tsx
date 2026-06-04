@@ -1,13 +1,16 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { ProductCatalog } from '@/components/erp/product-catalog'
 import { products, getProductCategories, getLowStockProducts } from '@/lib/data/products'
 import { Package, DollarSign, AlertTriangle, Layers } from 'lucide-react'
 
+const categories = getProductCategories()
+const lowStock = getLowStockProducts()
+const totalValue = products.reduce((sum, p) => sum + p.price * p.stockQuantity, 0)
+const totalStock = products.reduce((sum, p) => sum + p.stockQuantity, 0)
+
 export default function ProductsPage() {
-  const categories = getProductCategories()
-  const lowStock = getLowStockProducts()
-  const totalValue = products.reduce((sum, p) => sum + p.price * p.stockQuantity, 0)
-  const totalStock = products.reduce((sum, p) => sum + p.stockQuantity, 0)
 
   return (
     <div className="flex flex-col gap-6">

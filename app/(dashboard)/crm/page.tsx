@@ -1,12 +1,15 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { CustomerTable } from '@/components/crm/customer-table'
 import { customers, getCustomersBySegment, getTopCustomers } from '@/lib/data/customers'
 import { Users, Crown, UserCheck, UserPlus } from 'lucide-react'
 
+const premiumCustomers = getCustomersBySegment('Premium')
+const regularCustomers = getCustomersBySegment('Regular')
+const newCustomers = getCustomersBySegment('New')
+
 export default function CRMPage() {
-  const premiumCustomers = getCustomersBySegment('Premium')
-  const regularCustomers = getCustomersBySegment('Regular')
-  const newCustomers = getCustomersBySegment('New')
   const topCustomers = getTopCustomers(10)
   const totalRevenue = customers.reduce((sum, c) => sum + c.totalSpent, 0)
 

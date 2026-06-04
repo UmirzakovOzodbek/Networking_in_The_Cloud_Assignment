@@ -1,10 +1,13 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { ShipmentTracker } from '@/components/warehouse/shipment-tracker'
 import { getShipmentStats } from '@/lib/data/inventory'
 import { Truck, Package, MapPin, CheckCircle } from 'lucide-react'
 
+const stats = getShipmentStats()
+
 export default function ShipmentsPage() {
-  const stats = getShipmentStats()
 
   return (
     <div className="flex flex-col gap-6">

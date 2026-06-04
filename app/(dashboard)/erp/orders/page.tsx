@@ -1,10 +1,13 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { OrderTable } from '@/components/erp/order-table'
-import { getOrderStats } from '@/lib/data/orders'
+import { orderStats } from '@/lib/data/orders'
 import { ShoppingCart, Clock, Truck, CheckCircle } from 'lucide-react'
 
+const stats = orderStats
+
 export default function OrdersPage() {
-  const stats = getOrderStats()
 
   return (
     <div className="flex flex-col gap-6">

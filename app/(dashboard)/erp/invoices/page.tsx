@@ -1,13 +1,16 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { InvoiceTable } from '@/components/erp/invoice-table'
 import { invoices } from '@/lib/data/orders'
 import { FileText, CheckCircle, Clock, AlertTriangle } from 'lucide-react'
 
+const totalAmount = invoices.reduce((sum, i) => sum + i.total, 0)
+const paidAmount = invoices.filter(i => i.status === 'Paid').reduce((sum, i) => sum + i.total, 0)
+const pendingAmount = invoices.filter(i => i.status === 'Sent').reduce((sum, i) => sum + i.total, 0)
+const overdueCount = invoices.filter(i => i.status === 'Overdue').length
+
 export default function InvoicesPage() {
-  const totalAmount = invoices.reduce((sum, i) => sum + i.total, 0)
-  const paidAmount = invoices.filter(i => i.status === 'Paid').reduce((sum, i) => sum + i.total, 0)
-  const pendingAmount = invoices.filter(i => i.status === 'Sent').reduce((sum, i) => sum + i.total, 0)
-  const overdueCount = invoices.filter(i => i.status === 'Overdue').length
 
   return (
     <div className="flex flex-col gap-6">

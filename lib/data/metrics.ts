@@ -135,17 +135,19 @@ export const securityAlerts: SecurityAlert[] = [
 ]
 
 // Dashboard Stats
+export const cloudStats = {
+  totalServices: awsServices.length,
+  operationalServices: awsServices.filter(s => s.status === 'Operational').length,
+  totalInstances: ec2Instances.length,
+  runningInstances: ec2Instances.filter(i => i.status === 'Running').length,
+  avgCpuUsage: Math.round(ec2Instances.reduce((sum, i) => sum + i.cpuUsage, 0) / ec2Instances.length),
+  avgMemoryUsage: Math.round(ec2Instances.reduce((sum, i) => sum + i.memoryUsage, 0) / ec2Instances.length),
+  healthyChecks: healthChecks.filter(h => h.status === 'Healthy').length,
+  totalChecks: healthChecks.length,
+  unresolvedAlerts: securityAlerts.filter(a => !a.resolved).length,
+  totalAlerts: securityAlerts.length
+}
+
 export function getCloudStats() {
-  return {
-    totalServices: awsServices.length,
-    operationalServices: awsServices.filter(s => s.status === 'Operational').length,
-    totalInstances: ec2Instances.length,
-    runningInstances: ec2Instances.filter(i => i.status === 'Running').length,
-    avgCpuUsage: Math.round(ec2Instances.reduce((sum, i) => sum + i.cpuUsage, 0) / ec2Instances.length),
-    avgMemoryUsage: Math.round(ec2Instances.reduce((sum, i) => sum + i.memoryUsage, 0) / ec2Instances.length),
-    healthyChecks: healthChecks.filter(h => h.status === 'Healthy').length,
-    totalChecks: healthChecks.length,
-    unresolvedAlerts: securityAlerts.filter(a => !a.resolved).length,
-    totalAlerts: securityAlerts.length
-  }
+  return cloudStats
 }

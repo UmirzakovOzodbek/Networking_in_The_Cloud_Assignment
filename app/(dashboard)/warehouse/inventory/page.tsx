@@ -1,11 +1,14 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { InventoryGrid } from '@/components/warehouse/inventory-grid'
-import { getWarehouseStats, getLowStockInventory } from '@/lib/data/inventory'
+import { warehouseStats, getLowStockInventory } from '@/lib/data/inventory'
 import { Boxes, Package, AlertTriangle, MapPin } from 'lucide-react'
 
+const stats = warehouseStats
+const lowStock = getLowStockInventory()
+
 export default function InventoryPage() {
-  const stats = getWarehouseStats()
-  const lowStock = getLowStockInventory()
 
   return (
     <div className="flex flex-col gap-6">

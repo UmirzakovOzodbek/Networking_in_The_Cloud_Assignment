@@ -1,13 +1,14 @@
+"use client"
+
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { StatsCard } from '@/components/dashboard/stats-card'
-import { getWarehouseStats, getShipmentStats } from '@/lib/data/inventory'
+import { warehouseStats, getShipmentStats } from '@/lib/data/inventory'
 import { Warehouse, Boxes, Truck, AlertTriangle, Package, MapPin } from 'lucide-react'
 
-export default function WarehousePage() {
-  const warehouseStats = getWarehouseStats()
-  const shipmentStats = getShipmentStats()
+const shipmentStats = getShipmentStats()
 
+export default function WarehousePage() {
   const modules = [
     {
       title: 'Inventory Management',

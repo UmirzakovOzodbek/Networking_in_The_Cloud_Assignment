@@ -1,11 +1,13 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { ArchitectureDiagram } from '@/components/cloud/architecture-diagram'
 import { ServiceStatus, EC2InstanceStatus } from '@/components/cloud/service-status'
-import { getCloudStats } from '@/lib/data/metrics'
+import { cloudStats } from '@/lib/data/metrics'
 import { Cloud, Server, Activity, Shield } from 'lucide-react'
 
 export default function CloudPage() {
-  const stats = getCloudStats()
+  const stats = cloudStats
 
   return (
     <div className="flex flex-col gap-6">

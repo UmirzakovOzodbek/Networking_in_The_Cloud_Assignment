@@ -1,18 +1,16 @@
+"use client"
+
 import { StatsCard } from '@/components/dashboard/stats-card'
 import { RevenueChart, SalesByCategoryChart } from '@/components/dashboard/charts'
 import { SystemStatus } from '@/components/dashboard/system-status'
 import { RecentOrders } from '@/components/dashboard/recent-orders'
-import { getOrderStats } from '@/lib/data/orders'
+import { orderStats } from '@/lib/data/orders'
 import { customers } from '@/lib/data/customers'
-import { getWarehouseStats } from '@/lib/data/inventory'
-import { getCloudStats } from '@/lib/data/metrics'
+import { warehouseStats } from '@/lib/data/inventory'
+import { cloudStats } from '@/lib/data/metrics'
 import { DollarSign, ShoppingCart, Users, Package, Server, Activity } from 'lucide-react'
 
 export default function DashboardPage() {
-  const orderStats = getOrderStats()
-  const warehouseStats = getWarehouseStats()
-  const cloudStats = getCloudStats()
-
   return (
     <div className="flex flex-col gap-6">
       <div>

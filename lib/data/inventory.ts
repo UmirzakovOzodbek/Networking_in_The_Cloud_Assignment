@@ -90,7 +90,7 @@ export function getLowStockInventory(): InventoryItem[] {
   return inventory.filter(item => item.availableQuantity < 30)
 }
 
-export function getWarehouseStats() {
+export const warehouseStats = (() => {
   const totalItems = inventory.length
   const totalQuantity = inventory.reduce((sum, item) => sum + item.quantity, 0)
   const lowStockItems = inventory.filter(item => item.availableQuantity < 30).length
@@ -114,6 +114,10 @@ export function getWarehouseStats() {
     availableQuantity: totalQuantity - reservedQuantity,
     zoneStats
   }
+})()
+
+export function getWarehouseStats() {
+  return warehouseStats
 }
 
 export function getShipmentsByStatus(status: Shipment['status']): Shipment[] {

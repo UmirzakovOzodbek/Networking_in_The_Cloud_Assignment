@@ -108,7 +108,7 @@ export function getRecentOrders(limit: number = 10): Order[] {
   return [...orders].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, limit)
 }
 
-export function getOrderStats() {
+export const orderStats = (() => {
   const totalRevenue = orders.filter(o => o.status !== 'Cancelled').reduce((sum, o) => sum + o.total, 0)
   const totalOrders = orders.length
   const pendingOrders = orders.filter(o => o.status === 'Pending').length
@@ -127,6 +127,10 @@ export function getOrderStats() {
     cancelledOrders,
     averageOrderValue: totalRevenue / (totalOrders - cancelledOrders)
   }
+})()
+
+export function getOrderStats() {
+  return orderStats
 }
 
 export function getMonthlyRevenue(): { month: string; revenue: number; orders: number }[] {

@@ -1,18 +1,18 @@
+"use client"
+
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { StatsCard } from '@/components/dashboard/stats-card'
-import { getOrderStats } from '@/lib/data/orders'
+import { orderStats, invoices } from '@/lib/data/orders'
 import { products, getProductCategories, getLowStockProducts } from '@/lib/data/products'
-import { invoices } from '@/lib/data/orders'
 import { DollarSign, Package, ShoppingCart, FileText, AlertTriangle, TrendingUp } from 'lucide-react'
 
-export default function ERPPage() {
-  const orderStats = getOrderStats()
-  const categories = getProductCategories()
-  const lowStock = getLowStockProducts()
-  const paidInvoices = invoices.filter(i => i.status === 'Paid')
-  const overdueInvoices = invoices.filter(i => i.status === 'Overdue')
+const categories = getProductCategories()
+const lowStock = getLowStockProducts()
+const paidInvoices = invoices.filter(i => i.status === 'Paid')
+const overdueInvoices = invoices.filter(i => i.status === 'Overdue')
 
+export default function ERPPage() {
   const modules = [
     {
       title: 'Product Management',
